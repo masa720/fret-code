@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Nav } from "./components/nav";
 import { PlayIcon, ShuffleIcon, SparklesIcon } from "./components/icons";
+import { CHORD_LIBRARY, KEYS, PROGRESSION_STYLES } from "./data/music";
 
 export default function Home() {
   return (
@@ -44,14 +45,16 @@ export default function Home() {
                 <div className="flex items-center justify-between rounded-2xl bg-white/5 px-4 py-3">
                   <div>
                     <p className="text-xs uppercase tracking-[0.2em] text-indigo-200">Library</p>
-                    <p className="text-lg font-semibold">20 Voicings</p>
+                    <p className="text-lg font-semibold">{CHORD_LIBRARY.length} Voicings</p>
                   </div>
                   <PlayIcon />
                 </div>
                 <div className="flex items-center justify-between rounded-2xl bg-white/5 px-4 py-3">
                   <div>
                     <p className="text-xs uppercase tracking-[0.2em] text-amber-200">Generator</p>
-                    <p className="text-lg font-semibold">3 Styles × 6 Keys</p>
+                    <p className="text-lg font-semibold">
+                      {PROGRESSION_STYLES.length} Styles × {KEYS.length} Keys
+                    </p>
                   </div>
                   <ShuffleIcon />
                 </div>
