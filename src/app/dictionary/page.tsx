@@ -12,6 +12,10 @@ export default function DictionaryPage() {
   const [search, setSearch] = useState("");
   const audioContextRef = useRef<AudioContext | null>(null);
 
+  function normalize(value: string) {
+    return value.toLowerCase().replace(/[^a-z0-9#]+/g, "");
+  }
+
   const filteredChords = useMemo(() => {
     return CHORD_LIBRARY.filter((chord) => {
       const matchesQuality =
@@ -19,11 +23,15 @@ export default function DictionaryPage() {
         chord.quality === qualityFilter ||
         (qualityFilter === "7th" && ["maj7", "dominant"].includes(chord.quality));
       const term = search.trim().toLowerCase();
+      const norm = normalize(term);
       const matchesSearch =
         !term ||
         chord.name.toLowerCase().includes(term) ||
         chord.label.toLowerCase().includes(term) ||
-        chord.tags.some((tag) => tag.includes(term));
+        normalize(chord.name).includes(norm) ||
+        normalize(chord.label).includes(norm) ||
+        chord.tags.some((tag) => normalize(tag).includes(norm)) ||
+        normalize(chord.id).includes(norm);
       return matchesQuality && matchesSearch;
     });
   }, [qualityFilter, search]);
