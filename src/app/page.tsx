@@ -538,7 +538,7 @@ export default function Home() {
         <header className="flex flex-col gap-6 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur">
           <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em] text-indigo-200">
             <SparklesIcon />
-            Fret Code – Pattern A + B
+            Fret Code – Dictionary + Generator
           </div>
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
@@ -557,14 +557,14 @@ export default function Home() {
           </div>
           <div className="grid gap-3 text-sm text-slate-200/80 md:grid-cols-3">
             <div className="rounded-2xl bg-white/5 px-4 py-3">
-              <div className="text-xs uppercase tracking-[0.25em] text-indigo-200">Pattern A</div>
+              <div className="text-xs uppercase tracking-[0.25em] text-indigo-200">
+                Chord Dictionary
+              </div>
               <div className="text-lg font-semibold">Chord Dictionary</div>
               <p className="text-slate-200/70">フォーム確認、ダイアグラム描画、個別試聴。</p>
             </div>
             <div className="rounded-2xl bg-white/5 px-4 py-3">
-              <div className="text-xs uppercase tracking-[0.25em] text-amber-200">
-                Pattern B
-              </div>
+              <div className="text-xs uppercase tracking-[0.25em] text-amber-200">Generator</div>
               <div className="text-lg font-semibold">Progression Generator</div>
               <p className="text-slate-200/70">Key × テイストで4小節進行をオート生成。</p>
             </div>
@@ -582,7 +582,7 @@ export default function Home() {
           <section className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
               <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-indigo-200">Pattern A</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-indigo-200">Dictionary</p>
                 <h2 className="text-2xl font-semibold text-white">コード辞書</h2>
                 <p className="text-sm text-slate-200/80">
                   開放弦・バレー混在のフォームを SVG で表示。個別に鳴らして確認。
@@ -661,7 +661,7 @@ export default function Home() {
           <section className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-amber-200">Pattern B</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-amber-200">Generator</p>
                 <h2 className="text-2xl font-semibold text-white">進行ジェネレーター</h2>
                 <p className="text-sm text-slate-200/80">
                   Key とテイストを選ぶだけで 4 小節を提案。押さえ方付き。
