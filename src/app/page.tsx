@@ -311,9 +311,11 @@ function ChordDiagram({ chord }: { chord: ChordShape }) {
   const positive = strings.filter((fret) => fret > 0);
   const max = positive.length ? Math.max(...positive) : 1;
   const fretSpan = Math.max(3, max - startFret);
-  const height = 140;
-  const width = 160;
+  const height = 120;
+  const width = 220;
   const fretCount = fretSpan + 1;
+  const paddingX = 20;
+  const paddingY = 18;
 
   return (
     <div className="flex flex-col items-center gap-2">
@@ -325,24 +327,33 @@ function ChordDiagram({ chord }: { chord: ChordShape }) {
         className="drop-shadow-lg"
       >
         {strings.map((fret, index) => {
-          const x = (index / 5) * (width - 30) + 15;
+          const y =
+            paddingY +
+            ((strings.length - 1 - index) / (strings.length - 1)) * (height - paddingY * 2);
           return (
             <g key={index}>
               <line
-                x1={x}
-                y1={20}
-                x2={x}
-                y2={height - 20}
+                x1={paddingX}
+                y1={y}
+                x2={width - paddingX}
+                y2={y}
                 stroke="rgba(255,255,255,0.6)"
                 strokeWidth={1.5}
               />
               {fret === 0 && (
-                <circle cx={x} cy={10} r={5} fill="none" stroke="white" strokeWidth={1.5} />
+                <circle
+                  cx={paddingX - 10}
+                  cy={y}
+                  r={5}
+                  fill="none"
+                  stroke="white"
+                  strokeWidth={1.5}
+                />
               )}
               {fret === -1 && (
                 <text
-                  x={x}
-                  y={14}
+                  x={paddingX - 10}
+                  y={y + 3}
                   textAnchor="middle"
                   fill="rgba(255,255,255,0.7)"
                   fontSize={10}
@@ -355,15 +366,15 @@ function ChordDiagram({ chord }: { chord: ChordShape }) {
         })}
 
         {Array.from({ length: fretCount }).map((_, fret) => {
-          const y = 20 + (fret / fretSpan) * (height - 40);
+          const x = paddingX + (fret / fretSpan) * (width - paddingX * 2);
           const thickness = fret === 0 && startFret === 1 ? 4 : 2;
           return (
             <line
               key={fret}
-              x1={15}
-              y1={y}
-              x2={width - 15}
-              y2={y}
+              x1={x}
+              y1={paddingY}
+              x2={x}
+              y2={height - paddingY}
               stroke="rgba(255,255,255,0.5)"
               strokeWidth={thickness}
             />
@@ -372,9 +383,11 @@ function ChordDiagram({ chord }: { chord: ChordShape }) {
 
         {strings.map((fret, index) => {
           if (fret <= 0) return null;
-          const x = (index / 5) * (width - 30) + 15;
           const y =
-            20 + ((fret - startFret + 0.5) / fretSpan) * (height - 40);
+            paddingY +
+            ((strings.length - 1 - index) / (strings.length - 1)) * (height - paddingY * 2);
+          const x =
+            paddingX + ((fret - startFret + 0.5) / fretSpan) * (width - paddingX * 2);
           return (
             <g key={index}>
               <circle cx={x} cy={y} r={8} fill="white" opacity={0.9} />
@@ -396,8 +409,8 @@ function ChordDiagram({ chord }: { chord: ChordShape }) {
 
         {startFret > 1 && (
           <text
-            x={4}
-            y={50}
+            x={paddingX - 8}
+            y={paddingY + 12}
             fill="rgba(255,255,255,0.75)"
             fontSize={10}
             fontWeight="bold"
